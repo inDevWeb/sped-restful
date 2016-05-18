@@ -7,6 +7,7 @@ use SpedRest\Http\Requests;
 use SpedRest\Repositories\IssuerRepository;
 use SpedRest\Services\IssuerService;
 
+
 class IssuerController extends Controller
 {
     /**
@@ -21,6 +22,7 @@ class IssuerController extends Controller
      */
     protected $service;
 
+    protected $userId;
 
     /**
      * Construtora da classe
@@ -31,6 +33,8 @@ class IssuerController extends Controller
     {
         $this->repository = $repository;
         $this->service = $service;
+        $this->userId = Authorizer::getResourceOwnerId();
+        
     }
 
     /**
@@ -40,7 +44,13 @@ class IssuerController extends Controller
      */
     public function index()
     {
-        return $this->repository->all();
+        $userId = Authorizer::getResourceOwnerId();
+        return ['userid' => $this->userId];
+        $this->userId = 2;
+        if ($this->userId == 1) {
+            return $this->repository->all();
+        }
+        return ['error' => 'Voce não tem permissão para listar os Emitentes'];
     }
     
     /**

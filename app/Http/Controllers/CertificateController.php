@@ -41,7 +41,16 @@ class CertificateController extends Controller
      */
     public function store(Request $request)
     {
-        return $this->service->create($request->all());
+        $file = $request->file('pfx');
+        $extension = $file->getClientOriginalExtension();
+        $content = \File::get($file);
+        
+        echo $request->secret;
+        echo base64_encode($content);
+        die;
+        
+        
+        //return $this->service->create($request->all());
     }
 
     /**

@@ -13,9 +13,10 @@
 
 $factory->define(SpedRest\Entities\User::class, function (Faker\Generator $faker) {
     return [
-        'name' => $faker->firstName,
+        'name' => $faker->name,
         'email' => $faker->safeEmail,
         'password' => bcrypt(str_random(10)),
+        'cnpj' => '',
         'remember_token' => str_random(10),
     ];
 });
@@ -24,7 +25,7 @@ $factory->define(SpedRest\Entities\Issuer::class, function (Faker\Generator $fak
     $co = $faker->company;
     $cos = $co . $faker->companySuffix;
     return [
-        'name' => $co,
+        'fantasia' => $co,
         'razao' => $cos,
         'logradouro' => $faker->streetName,
         'numero' => $faker->numberBetween(1, 6000),

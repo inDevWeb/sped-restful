@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 
-class Certificate extends Model implements Transformable
+class IssuerMember extends Model implements Transformable
 {
     use TransformableTrait;
     
@@ -16,11 +16,8 @@ class Certificate extends Model implements Transformable
      * @var array
      */
     protected $fillable = [
-        'pfx',
-        'chain',
-        'secret',
-        'cnpj',
-        'validity'
+        'issuer_id',
+        'mamber_id'
     ];
     
     /**
@@ -29,13 +26,5 @@ class Certificate extends Model implements Transformable
      * @var array
      */
     protected $hidden = [
-        'pfx',
-        'chain',
-        'secret'
     ];
-    
-    public function issuer()
-    {
-        return $this->belongsTo(Issuer::class);
-    }
 }

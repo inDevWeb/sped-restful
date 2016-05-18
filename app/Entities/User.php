@@ -23,4 +23,13 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    
+    /**
+     * Busca os Emitentes relacionados com o User
+     * @return Issuer
+     */
+    public function issuers()
+    {
+        return $this->belongsToMany(Issuer::class, 'issuer_members', 'member_id', 'issuer_id');
+    }
 }

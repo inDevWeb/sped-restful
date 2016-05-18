@@ -67,7 +67,6 @@ A emissão recebe os dados brutos da interface e grava em base de dados como ras
 1. [Carrega NFe](EMISSAO.md#load)
 
 
-
 ## [Acesso à SEFAZ](docs/SEFAZ.md)
 Esses métodos interagem com o SEFAZ e retornam os resultados dessa interação.
 
