@@ -27,3 +27,5 @@ Route::get('issuer', ['middleware'=>'oauth','uses' =>'IssuerController@index']);
 Route::post('issuer', 'IssuerController@store');
 Route::get('issuer/{id}', 'IssuerController@show');
 Route::put('issuer/{id}', 'IssuerController@update');
+
+Route::post('certificate', 'CertificateController@store');

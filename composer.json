@@ -18,7 +18,9 @@
         "prettus/l5-repository": "^2.5",
         "prettus/laravel-validation": "1.1.*",
         "lucadegasperi/oauth2-server-laravel": "5.1.*",
-        "nfephp-org/sped-common" : "^4.1"
+        "nfephp-org/sped-common" : "^4.1",
+        "daylerees/sanitizer": "^1.0",
+        "canducci/zipcode": "1.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -28,11 +30,6 @@
         "symfony/dom-crawler": "2.8.*|3.0.*",
         "scrutinizer/ocular": "~1.1",
         "squizlabs/php_codesniffer": "~2.3"
-    },
-    "autoload": {
-        "psr-4": {
-          "SpedRest\\": "app/"
-        }
     },
     "autoload": {
         "classmap": [

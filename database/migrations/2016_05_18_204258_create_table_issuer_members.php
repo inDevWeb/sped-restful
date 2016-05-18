@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCertificatesTable extends Migration
+class CreateTableIssuerMembers extends Migration
 {
     /**
      * Run the migrations.
@@ -12,13 +12,12 @@ class CreateCertificatesTable extends Migration
      */
     public function up()
     {
-        Schema::create('certificates', function (Blueprint $table) {
+        Schema::create('issuer_members', function (Blueprint $table) {
+            $table->increments('id');
             $table->integer('issuer_id')->unsigned();
-            $table->text('pfx');
-            $table->text('chain');
-            $table->string('secret');
-            $table->string('cnpj');
-            $table->dateTime('validity');
+            $table->foreign('issuer_id')->references('id')->on('issuers');
+            $table->integer('member_id')->unsigned();
+            $table->foreign('member_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class CreateCertificatesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('certificates');
+        Schema::drop('issuer_members');
     }
 }

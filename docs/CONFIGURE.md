@@ -3,7 +3,7 @@
 # Configuração Inicial
 
 ## .ENV 
-Na raiz do projeto copie o arquivo .env.example e modifique de acordo com sua intalação
+Na raiz do projeto copie o arquivo .env.example e modifique de acordo com sua instalação
 
 ```php
 APP_ENV=local
@@ -42,7 +42,8 @@ artisan migrate
 Isso irá carregar as tabelas para a sua base de dados
 
 ## Seed inicial da base de dados
-Para pode iniciar o usu do serviço é necessário carregar algumas tabelas com as informações iniciais do administrador e do aplicativo cliente
+Para pode iniciar o uso do serviço é necessário carregar algumas tabelas com as informações iniciais do administrador e do aplicativo cliente.
+
   
 ## Persistencia de dados
 Os dados referentes aos usuários são mantidos em banco de dados SQL e configurados durante a instalação. (vide [Configuração](CONFIGURACAO.md))

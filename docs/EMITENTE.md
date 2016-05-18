@@ -1,15 +1,15 @@
 # Sped-RestFul
 
-## Gestão de Emitente
-Atraves desses serviços é possivel incluir, modificar ou remover os emitentes da aplicação.
-O Emitente é uma referência a empresa emitente de NFe e todos os dados são obrigatórios.
+## Gestão de Emitente (ISSUER)
+Através desses serviços é possivel incluir, modificar ou remover os emitentes da aplicação.
+O Emitente é uma referência a empresa emitente do SPED.
 >Além dos dados do emitente também devem ser passados o certificado digital, após o emitente haver sido cadastrado com sucesso.
 
 ## Listar Emitentes
 Serão retornados quantos emitentes estiverem cadastrados.
 >Somente o administrador do sistema tem acesso a essa lista.
 
-**GET:** http://dominio/restnfe/emitente
+**GET:** http://<dominio>/issuer
 
 Retorno de status HTTP: 200 (Success)
 
@@ -21,7 +21,7 @@ Retorno:
   	    "users": [
   		    {
                 "id": "",
-    			"nome" : "",
+    			"name" : "",
     			"razao": "",
     			"logradouro": "",
     			"numero": "",
@@ -49,11 +49,38 @@ Retorno:
     }
 ```
 
+Explicações :
+- "name" Refere-se a um nome fantasia da empresa, simplificado e sem espaços
+- "razao" Razão Social Completa
+- "logradouro" Nome do logradouro do endereço
+- "numero" Numero do logradouro do endereço
+- "complemento" Complemento do endereço
+- "municipio" Nome do municipio 
+    			"UF": "",
+    			"cep": "",
+    			"logo": "",
+    			"cnpj": "",
+    			"ie": "",
+    			"im": "",
+    			"CNAE": "",
+    			"CSC": "",
+    			"CSC_id": "",
+    			"IBPT": "",
+    			"email": "",
+    			"pass": "",
+    			"smtp": "",
+    			"port": "",
+    			"ssl": "",
+    			"fromname": "",
+    			"replyto": ""
+
+
+
 ## Cadastrar Emitentes
 
 > O cadastro de novos emitentes somente poderá ser feito pelo próprio administrador do sistema.
 
-**POST:** http://dominio/restnfe/emitente
+**POST:** http://<dominio>/issuer
 
 > Todos os parametros são considerados obrigatórios e devem existir mesmo que como uma string vazia.
 
@@ -91,8 +118,7 @@ Retorno:
 ```json
 	{
         "bStat": true,
-        "id": "",
-    	"token": ""
+        "id": ""
     }
 ```
 
@@ -103,7 +129,7 @@ Retorno:
 
 $id = id do emitente
 
-**PUT:** http://dominio/restnfe/emitente/$id
+**PUT:** http://<dominio>/issuer/$id
 
 > Todos os parâmetros são considerados obrigatórios e devem existir mesmo que como uma string vazia.
 
@@ -139,10 +165,9 @@ Retorno de status HTTP: 200 (Success)
 
 Retorno:
 ```json
-	{
+    {
         "bStat": true,
-        "id": "",
-    	"token": ""
+        "id": ""
     }
 ```
 
@@ -156,7 +181,7 @@ Retorno de status HTTP: 200 (Success)
 
 Retorno:
 ```json
-	{
+    {
     	"bStat": true
     }
 ```
@@ -165,7 +190,7 @@ Retorno:
 
 > Os dados referentes ao certificado digital atual, poderão ser obtidos pelo próprio emitente ou pelo administrador apenas.
 
-**GET:** http://dominio/restnfe/emitente/$id/certificado
+**GET:** http://<dominio>/certificate
 
 $id = id do emitente
 
@@ -173,7 +198,7 @@ Retorno de status HTTP: 200 (Success)
 
 Retorno:
 ```json
-	{
+    {
         "bStat": true,
         "validade": "2016-04-21",
         "timestamp": "1461207600",
@@ -187,7 +212,7 @@ Retorno:
 
 $id = id do emitente
 
-**POST:** http://dominio/restnfe/emitente/$id/certificado
+**POST:** http://<dominio>/certificate
 
 Parametros:
 
@@ -200,7 +225,7 @@ cadeia = cadeia de certificação do certificado digital, comprimido com gzip e 
 >O certificado pfx é **"OBRIGATÓRIO"**, bem como a **"SENHA"**, já a cadeia de certificação completa poderá ou não ser necessária para algum SEFAZ. Se não for necessária deixar string vazia.
 
 ```json
-	{
+    {
         "pfx": "",
     	"senha": "",
         "cadeia": ""

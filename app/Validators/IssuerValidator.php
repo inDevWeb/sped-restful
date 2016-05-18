@@ -15,7 +15,7 @@ class IssuerValidator extends LaravelValidator
         'municipio' => 'required|max:255',
         'UF' => 'required|max:2',
         'cep' => 'required|max:20',
-        //'logo'
+        'logo'=> '',
         'cnpj'  => 'required|min:14|max:14',
         'ie'   => 'required|max:14',
         'im' => 'max:20',

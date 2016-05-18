@@ -1,5 +1,7 @@
 # Sped-RestFul
 
+Esta aplicação é construida com base no framework Larvel 5.2.
+
 # Instalação
 
 A instalação pode ser feita pelo git:

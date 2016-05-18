@@ -14,7 +14,7 @@ class CreateIssuersTable extends Migration
     {
         Schema::create('issuers', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name', 25)->unique();
+            $table->string('fantasia', 25)->unique();
             $table->string('razao');
             $table->string('logradouro');
             $table->string('numero', 50);
