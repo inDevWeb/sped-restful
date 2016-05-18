@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Exceptions;
+namespace SpedRest\Exceptions;
 
 use Exception;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
-use Laravel\Lumen\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler
 {

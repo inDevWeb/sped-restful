@@ -11,9 +11,41 @@
 |
 */
 
-$factory->define(App\User::class, function ($faker) {
+$factory->define(SpedRest\Entities\User::class, function (Faker\Generator $faker) {
     return [
-        'name' => $faker->name,
-        'email' => $faker->email,
+        'name' => $faker->firstName,
+        'email' => $faker->safeEmail,
+        'password' => bcrypt(str_random(10)),
+        'remember_token' => str_random(10),
+    ];
+});
+
+$factory->define(SpedRest\Entities\Issuer::class, function (Faker\Generator $faker) {
+    $co = $faker->company;
+    $cos = $co . $faker->companySuffix;
+    return [
+        'name' => $co,
+        'razao' => $cos,
+        'logradouro' => $faker->streetName,
+        'numero' => $faker->numberBetween(1, 6000),
+        'complemento' => '',
+        'municipio' => $faker->city,
+        'UF' => 'SP',
+        'cep' => $faker->numerify('#####-###'),
+        'logo' => '',
+        'cnpj' => $faker->numerify('#############'),
+        'ie' => $faker->numerify('#############'),
+        'im' => '',
+        'CNAE' => '',
+        'CSC' => '',
+        'CSC_id' => '',
+        'IBPT' => '',
+        'email' => $faker->companyEmail,
+        'pass' => '',
+        'smtp' => '',
+        'port' => '',
+        'ssl' => '',
+        'fromname' => '',
+        'replyto' => ''
     ];
 });

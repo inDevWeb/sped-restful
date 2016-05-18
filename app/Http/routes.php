@@ -1,16 +1,29 @@
 <?php
 
+//use LucaDegasperi\OAuth2Server\Facades\Authorizer;
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
 |--------------------------------------------------------------------------
 |
 | Here is where you can register all of the routes for an application.
-| It is a breeze. Simply tell Lumen the URIs it should respond to
-| and give it the Closure to call when that URI is requested.
+| It's a breeze. Simply tell Laravel the URIs it should respond to
+| and give it the controller to call when that URI is requested.
 |
 */
 
-$app->get('/', function () use ($app) {
-    return $app->version();
+Route::get('/', function () {
+    return view('welcome');
 });
+
+Route::post('oauth/access_token', function () {
+    return Response::json(Authorizer::issueAccessToken());
+});
+
+//Rotas para Emitentes
+
+Route::get('issuer', ['middleware'=>'oauth','uses' =>'IssuerController@index']);
+Route::post('issuer', 'IssuerController@store');
+Route::get('issuer/{id}', 'IssuerController@show');
+Route::put('issuer/{id}', 'IssuerController@update');

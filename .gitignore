@@ -4,8 +4,7 @@
 /nbproject
 /build
 /node_modules
-/certs/*.pem
-/certs/*.pfx
+/public/storage
 composer.lock
 
 # Laravel 5 & Lumen specific
@@ -15,3 +14,6 @@ storage/
 .env.php
 .env
 .env.example
+Homestead.yaml
+Homestead.json
+
