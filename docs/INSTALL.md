@@ -4,7 +4,7 @@
 
 A instalação pode ser feita pelo git:
 ```bash
-git clone git@github.com:robmachado/restnfe.git <nome da pasta>
+git clone git@github.com:nfephp-org/sped-restful.git <nome da pasta>
 ```
 Após o Git ter instalado criado a pasta e baixado os arquivos, vá para a pasta criada.
 ```bash
@@ -28,14 +28,17 @@ composer install
 Todas as dependências estão disponíveis no [Packgist](https://packagist.org/), e inclusas no arquivo composer.json
 
 ### Produção
-
-- "laravel/lumen-framework": "5.2.*"
-- "vlucas/phpdotenv": "~2.2"
-- "nfephp-org/nfephp": "4.0.*"
+- "laravel/framework": "5.2.*",
+- "prettus/l5-repository": "^2.5",
+- "prettus/laravel-validation": "1.1.*",
+- "lucadegasperi/oauth2-server-laravel": "5.1.*",
+- outras ainda não definidas
 
 ### Desenvolvimento
-
-- "phpunit/phpunit": "4.*"
-- "fzaninotto/faker": "~1.4"
-- "scrutinizer/ocular": "~1.1"
+- "fzaninotto/faker": "~1.4",
+- "mockery/mockery": "0.9.*",
+- "phpunit/phpunit": "~4.0",
+- "symfony/css-selector": "2.8.*|3.0.*",
+- "symfony/dom-crawler": "2.8.*|3.0.*",
+- "scrutinizer/ocular": "~1.1",
 - "squizlabs/php_codesniffer": "~2.3"
