@@ -6,7 +6,7 @@ RestFul Service para gestão das NFe
 
 A intenção por trás dessa aplicação é montar um servidor RestFul que poderá ser acessado pelos **"Emitentes"** cadastrados e fazer todo os processos de gestão das NFe, como:
 
-- Digitação de NFe e seu armazenamento em base de dados
+- Recebimento de dados de uma NFe e seu armazenamento em base de dados
 - Gestão das NFe emitidas e Recebidas de Terceiros
 - Envio de lote de NFe (incluindo a conversão de TXT para xml e assinatura)
 - Busca do Status dos Webservices das SEFAZ
