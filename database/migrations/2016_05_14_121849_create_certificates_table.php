@@ -13,10 +13,15 @@ class CreateCertificatesTable extends Migration
     public function up()
     {
         Schema::create('certificates', function (Blueprint $table) {
+            $table->increments('id');
             $table->integer('issuer_id')->unsigned();
+            $table->foreign('issuer_id')->references('id')->on('issuers');
             $table->text('pfx');
             $table->text('chain');
             $table->string('secret');
+            $table->text('prikey');
+            $table->text('pubkey');
+            $table->text('certkey');
             $table->string('cnpj');
             $table->dateTime('validity');
             $table->timestamps();

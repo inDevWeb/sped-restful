@@ -9,7 +9,7 @@ O Emitente é uma referência a empresa emitente do SPED.
 Serão retornados quantos emitentes estiverem cadastrados.
 >Somente o administrador do sistema tem acesso a essa lista.
 
-**GET:** http://<dominio>/issuer
+**GET:** http://dominio/issuer
 
 Retorno de status HTTP: 200 (Success)
 
@@ -21,7 +21,7 @@ Retorno:
   	    "users": [
   		    {
                 "id": "",
-    			"name" : "",
+    			"fantasia" : "",
     			"razao": "",
     			"logradouro": "",
     			"numero": "",
@@ -50,7 +50,7 @@ Retorno:
 ```
 
 Explicações :
-- "name" Refere-se a um nome fantasia da empresa, simplificado e sem espaços
+- "fantasia" Refere-se a um nome fantasia da empresa, simplificado e sem espaços
 - "razao" Razão Social Completa
 - "logradouro" Nome do logradouro do endereço
 - "numero" Numero do logradouro do endereço
@@ -80,14 +80,14 @@ Explicações :
 
 > O cadastro de novos emitentes somente poderá ser feito pelo próprio administrador do sistema.
 
-**POST:** http://<dominio>/issuer
+**POST:** http://dominio/issuer
 
 > Todos os parametros são considerados obrigatórios e devem existir mesmo que como uma string vazia.
 
 Parametros:
 ```json
   {
-    "nome" : "",
+    "fantasia" : "",
     "razao": "",
     "logradouro": "",
     "numero": "",
@@ -129,14 +129,14 @@ Retorno:
 
 $id = id do emitente
 
-**PUT:** http://<dominio>/issuer/$id
+**PUT:** http://dominio/issuer/$id
 
 > Todos os parâmetros são considerados obrigatórios e devem existir mesmo que como uma string vazia.
 
 Parâmetros:
 ```json
   {
-    "nome" : "",
+    "fantasia" : "",
     "razao": "",
     "logradouro": "",
     "numero": "",
@@ -172,10 +172,9 @@ Retorno:
 ```
 
 ## Deletar Emitente
+Os emitentes poderão ser removidos pelos seus usuários vinculados, porém ao faze-lo serão apagadas todos os dados relativos a esse emitente.
 
-> A remoção do emitente somente poderá ser feita com a autenticação do administrador do sistema.
-
-**DELETE:** http://dominio/restnfe/emitente/$id
+**DELETE:** http://dominio/issuer/$id
 
 Retorno de status HTTP: 200 (Success)
 
@@ -185,60 +184,3 @@ Retorno:
     	"bStat": true
     }
 ```
-
-## Dados do Certificado
-
-> Os dados referentes ao certificado digital atual, poderão ser obtidos pelo próprio emitente ou pelo administrador apenas.
-
-**GET:** http://<dominio>/certificate
-
-$id = id do emitente
-
-Retorno de status HTTP: 200 (Success)
-
-Retorno:
-```json
-    {
-        "bStat": true,
-        "validade": "2016-04-21",
-        "timestamp": "1461207600",
-        "cnpj": "99999999999999"
-    }
-```
-
-## Upgrade do Certificado
-
-> A inclusão ou renovação do certificado digital poderá ser feita apenas pelo próprio emitente ou pelo administrador.
-
-$id = id do emitente
-
-**POST:** http://<dominio>/certificate
-
-Parametros:
-
-pfx = certificado pfx comprimido com gzip e convertido para base64
-
-senha = password de segurança do certificado
-
-cadeia = cadeia de certificação do certificado digital, comprimido com gzip e convertido para base64
-
->O certificado pfx é **"OBRIGATÓRIO"**, bem como a **"SENHA"**, já a cadeia de certificação completa poderá ou não ser necessária para algum SEFAZ. Se não for necessária deixar string vazia.
-
-```json
-    {
-        "pfx": "",
-    	"senha": "",
-        "cadeia": ""
-    }
-```
-Retorno de status HTTP: 200 (Success)
-
-Retorno:
-```json
-	{
-    	"bStat": true
-    }
-```
-
-
-

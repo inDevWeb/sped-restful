@@ -62,4 +62,9 @@ class Issuer extends Model implements Transformable
     {
         return $this->belongsToMany(User::class, 'issuer_members', 'issuer_id', 'member_id');
     }
+    
+    public function certificate()
+    {
+        return $this->hasOne(Certificate::class);
+    }
 }

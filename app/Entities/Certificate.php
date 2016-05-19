@@ -19,6 +19,9 @@ class Certificate extends Model implements Transformable
         'pfx',
         'chain',
         'secret',
+        'prikey',
+        'pubkey',
+        'certkey',
         'cnpj',
         'validity'
     ];
@@ -31,7 +34,10 @@ class Certificate extends Model implements Transformable
     protected $hidden = [
         'pfx',
         'chain',
-        'secret'
+        'secret',
+        'prikey',
+        'pubkey',
+        'certkey'
     ];
     
     public function issuer()
