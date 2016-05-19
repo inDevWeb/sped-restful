@@ -17,7 +17,7 @@ class IssuerMember extends Model implements Transformable
      */
     protected $fillable = [
         'issuer_id',
-        'mamber_id'
+        'member_id'
     ];
     
     /**

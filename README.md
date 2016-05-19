@@ -28,6 +28,8 @@ Serviços opcionais
 
 ## [Configuração](docs/CONFIGURE.md)
 
+## [Gestão de Usuários](docs/USUARIOS.md)
+
 ## [Gestão de Emitente](docs/EMITENTE.md)
 Esses métodos alteram os dados do Emitente do sistema e seus recursos.
 
