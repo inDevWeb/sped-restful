@@ -3,20 +3,20 @@
 ## Gestão de Usuários
 
 Os usuários são definidos como:
-- Administrador (apenas um o primeiro a ser registrado, seu id deve ser 1)
+- Administrador (apenas um, o primeiro a ser registrado, seu id deve ser 1)
 - Comuns, estes usuários poderão apenas acessar os dados relativos a seus grupos de dados.
 
 ### Administrador
-Esiste apenas um administrador. E seu registro não pode ser removido, apenas editado.
+Existe apenas um administrador. E seu registro não pode ser removido, apenas editado.
 O primeiro usuário cadastrado no sistema será sempre o administrador, ou seja "user.id = 1". Esse será o "superusuário" com poderes totais sobre os cadastros do sistema. O administrador terá sempre acesso total a todas as operações do sistema e é ele quem deve incluir um novo usuário no sistema.
 
 Esse novo usuário criado pelo administrador, não necessita ter nenhum vinculo com emitente, então caso tenha sido criado sem vinculos, sua primeira e obrigatória tarefa será incluir um emitente para si mesmo.
 
 ### Comuns
-Os usuários comuns sempre estarão vinculados a pelo menos um emitente.
-O usuário comum pode incluir outros usuários que serão vinculados aos mesmos emitentes que o usuário que os criou.
+Os usuários comuns sempre estarão vinculados a pelo menos um emitente, mas podem estar relacionados a vários emitentes.
+O usuário comum pode incluir outros usuários comuns, que serão vinculados aos mesmos emitentes que o usuário que os criou.
 
-Este usuário pode criar novos emitentes, que automaticamente, serão vinculados a ele e a todos os outros usuários pertencentes a esse grupo.
+Este usuário comum também pode criar novos emitentes, que automaticamente, serão vinculados a ele e a todos os outros usuários pertencentes a esse mesmo grupo.
 
 ## Operações com usuários
 

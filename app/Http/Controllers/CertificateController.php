@@ -4,30 +4,29 @@ namespace SpedRest\Http\Controllers;
 
 use Illuminate\Http\Request;
 use SpedRest\Http\Requests;
-use SpedRest\Repositories\CertificateRepository;
-use SpedRest\Services\CertificateService;
+use SpedRest\Repositories\IssuerRepository;
+use SpedRest\Services\IssuerService;
 
 class CertificateController extends Controller
 {
     /**
      * Repository de acesso ao banco de dados
-     * @var CertificateRepository
+     * @var IssuerRepository
      */
     protected $repository;
 
     /**
      * Serviço com regras de negócio para acesso a base de dados
-     * @var CertificateService
+     * @var IssuerService
      */
     protected $service;
 
     /**
      * Construtora da classe
      * Instancia o repository
-     * @param CertificateRepository $repository
-     * @param CertificateService $service
+     * @param IssuerRepository $repository
      */
-    public function __construct(CertificateRepository $repository, CertificateService $service)
+    public function __construct(IssuerRepository $repository, IssuerService $service)
     {
         $this->repository = $repository;
         $this->service = $service;
@@ -39,51 +38,31 @@ class CertificateController extends Controller
      * @param Request $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
         $file = $request->file('pfx');
         $extension = $file->getClientOriginalExtension();
-        $content = \File::get($file);
+        $pass = $request->secret;
         
-        echo $request->secret;
-        echo base64_encode($content);
-        die;
+        $data = [
+            'file' => $file,
+            'extension' => $extension,
+            'secret' => $pass,
+            'chain' => $request->chain
+        ];
         
-        
-        //return $this->service->create($request->all());
+        $dados = $this->service->certificateStore($data, $id);
+        return $dados;
     }
-
+    
     /**
-     * Retorna os dados de um certificado
+     * Retorna os dados de um emitente
      * Pode ser acessado pelo Admin ou pelo próprio emitente
      * @param int $id
      * @return Response
      */
     public function show($id)
     {
-        return $this->service->find($id);
-    }
-
-    /**
-     * Atualiza dos dados do certificado
-     * Pode ser acessado pelo Admin ou pelo próprio emitente
-     * @param Request $request
-     * @param int $id
-     * @return Response
-     */
-    public function update(Request $request, $id)
-    {
-        return $this->service->update($request->all(), $id);
-    }
-
-    /**
-     * Deleta certificado
-     *
-     * @param type $id
-     * @return type
-     */
-    public function destroy($id)
-    {
-        return $this->repository->find($id)->delete();
+        return '';
     }
 }
