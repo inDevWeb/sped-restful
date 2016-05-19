@@ -16,7 +16,6 @@ $factory->define(SpedRest\Entities\User::class, function (Faker\Generator $faker
         'name' => $faker->name,
         'email' => $faker->safeEmail,
         'password' => bcrypt(str_random(10)),
-        'cnpj' => '',
         'remember_token' => str_random(10),
     ];
 });
@@ -48,5 +47,12 @@ $factory->define(SpedRest\Entities\Issuer::class, function (Faker\Generator $fak
         'ssl' => '',
         'fromname' => '',
         'replyto' => ''
+    ];
+});
+
+$factory->define(SpedRest\Entities\IssuerMember::class, function (Faker\Generator $faker) {
+    return [
+        'issuer_id' => $faker->numberBetween(1, 6000),
+        'member_id' => $faker->numberBetween(1, 6000)
     ];
 });

@@ -9,7 +9,8 @@ composer.lock
 
 # Laravel 5 & Lumen specific
 bootstrap/cache/
-/database/seeds/IssuersTableSeeder.php
+/database/seeds/*
+!/database/seeds/DatabaseSeeder.php
 storage/
 .env.*.php
 .env.php
