@@ -138,8 +138,26 @@ class IssuerService
         ];
         $issuer->certificate()->where('issuer_id', $id)->delete();
         return $issuer->certificate()->create($dados);
-        //Storage::put($cnpj.'.'.$data['extension'], File::get($data['file']));
     }
     
+    public function environmentStore(array $data, $id)
+    {
+        $issuer = $this->repository->find($id);
+        $issuer->environment()->where('issuer_id', $id)->delete();
+        return $issuer->environment()->create($data);
+    }
     
+    public function contingencyStore(array $data, $id)
+    {
+        $issuer = $this->repository->find($id);
+        $issuer->contingency()->where('issuer_id', $id)->delete();
+        return $issuer->contingency()->create($data);
+    }
+    
+    public function protocolStore(array $data, $id)
+    {
+        $issuer = $this->repository->find($id);
+        $issuer->protocol()->where('issuer_id', $id)->delete();
+        return $issuer->protocol()->create($data);
+    }
 }

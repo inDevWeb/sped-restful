@@ -30,10 +30,14 @@ composer install
 Todas as dependências estão disponíveis no [Packgist](https://packagist.org/), e inclusas no arquivo composer.json
 
 ### Produção
-- "laravel/framework": "5.2.*",
-- "prettus/l5-repository": "^2.5",
-- "prettus/laravel-validation": "1.1.*",
-- "lucadegasperi/oauth2-server-laravel": "5.1.*",
+- "laravel/framework": "5.2.*"
+- "prettus/l5-repository": "^2.5"
+- "prettus/laravel-validation": "1.1.*"
+- "lucadegasperi/oauth2-server-laravel": "5.1.*"
+- "daylerees/sanitizer": "^1.0"
+- "canducci/zipcode": "1.*"
+- "phpbu/phpbu-laravel": "^2.0"
+- "nfephp-org/sped-common" : "^4.1"
 - outras ainda não definidas
 
 ### Desenvolvimento

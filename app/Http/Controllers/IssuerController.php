@@ -2,8 +2,9 @@
 
 namespace SpedRest\Http\Controllers;
 
-use Illuminate\Http\Request;
-use SpedRest\Http\Requests;
+//use Illuminate\Http\Request;
+
+use SpedRest\Http\Request;
 use SpedRest\Repositories\IssuerRepository;
 use SpedRest\Services\IssuerService;
 
@@ -32,24 +33,17 @@ class IssuerController extends Controller
     {
         $this->repository = $repository;
         $this->service = $service;
-        $this->userId = Authorizer::getResourceOwnerId();
+        //$this->userId = Authorizer::getResourceOwnerId();
         
     }
 
     /**
-     * Lista todos os clientes
-     * Função exclusiva do admin !
+     * Lista todos os Emitentes relacionados com o usuário
      * @return Response
      */
     public function index()
     {
-        $userId = Authorizer::getResourceOwnerId();
-        return ['userid' => $this->userId];
-        $this->userId = 2;
-        if ($this->userId == 1) {
-            return $this->repository->all();
-        }
-        return ['error' => 'Voce não tem permissão para listar os Emitentes'];
+        return $this->repository->all();
     }
     
     /**
