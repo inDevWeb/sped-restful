@@ -1,19 +1,5 @@
 <?php
 
-//use LucaDegasperi\OAuth2Server\Facades\Authorizer;
-
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
-|
-*/
-//use \LucaDegasperi\OAuth2Server\Facades\Authorizer;
-
 Route::get('/', function () {
     return view('welcome');
 });
@@ -21,6 +7,13 @@ Route::get('/', function () {
 Route::post('oauth/access_token', function () {
     return Response::json(Authorizer::issueAccessToken());
 });
+
+//Rotas de usuário
+Route::get('user', 'UserController@index');
+Route::post('user', 'UserController@store');
+Route::get('user/{id}', 'UserController@show');
+Route::put('user/{id}', 'UserController@update');
+Route::delete('user/{id}', 'UserController@destroy');
 
 //Rotas para Emitentes
 Route::get('issuer', 'IssuerController@index');
@@ -33,12 +26,6 @@ Route::delete('issuer/{id}', 'IssuerController@destroy');
 Route::get('issuer/{id}/certificate', 'CertificateController@show');
 Route::post('issuer/{id}/certificate', 'CertificateController@store');
 
-//Rotas de usuário
-Route::get('user', 'UserController@index');
-Route::post('user', 'UserController@store');
-Route::put('user/{id}', 'UserController@update');
-Route::delete('user/{id}', 'UserController@destroy');
-
 //Rotas de ambiente
 Route::get('issuer/{id}/environment', 'EnvironmentController@show');
 Route::post('issuer/{id}/environment', 'EnvironmentController@store');
@@ -50,7 +37,7 @@ Route::post('issuer/{id}/contingency', 'ContingencyController@store');
 //Rotas de protoclo SSL
 Route::get('issuer/{id}/protocol', 'ProtocolController@show');
 Route::post('issuer/{id}/protocol', 'ProtocolController@store');
-
+/*
 //Rotas referentes a NFe
 Route::post('issuer/{id}/nfe', 'NFeController@index');
 
@@ -79,3 +66,4 @@ Route::post('issuer/{id}/nfe/sefaz/cce', 'SefazController@cce');
 
 //Rotas referentes a emissão de documentos auxiliares
 Route::post('issuer/{id}/nfe/danfe/{num}', 'DaController@danfe');
+*/

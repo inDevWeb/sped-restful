@@ -21,7 +21,8 @@
         "nfephp-org/sped-common" : "^4.1",
         "daylerees/sanitizer": "^1.0",
         "canducci/zipcode": "1.*",
-        "phpbu/phpbu-laravel": "^2.0"
+        "phpbu/phpbu-laravel": "^2.0",
+        "kalfheim/sanitizer": "^1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -58,7 +59,7 @@
         ],
         "post-update-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
-            "php artisan optimize"
+            "php artisan optimize && vendor/bin/phpcbf --standard=psr2 app/"
         ]
     },
     "config": {

@@ -5,7 +5,6 @@ namespace SpedRest\Entities;
 use Illuminate\Database\Eloquent\Model;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
-use SpedRest\Entities\User;
 
 class Issuer extends Model implements Transformable
 {
@@ -63,8 +62,27 @@ class Issuer extends Model implements Transformable
         return $this->belongsToMany(User::class, 'issuer_members', 'issuer_id', 'member_id');
     }
     
+    /**
+     * Busca certificados do Emitente
+     * @return Certificate
+     */
     public function certificate()
     {
         return $this->hasOne(Certificate::class);
+    }
+    
+    public function environment()
+    {
+        return $this->hasOne(Environment::class);
+    }
+    
+    public function contingency()
+    {
+        return $this->hasOne(Contingency::class);
+    }
+
+    public function protocol()
+    {
+        return $this->hasOne(Protocol::class);
     }
 }
