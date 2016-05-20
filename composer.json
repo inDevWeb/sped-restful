@@ -20,7 +20,8 @@
         "lucadegasperi/oauth2-server-laravel": "5.1.*",
         "nfephp-org/sped-common" : "^4.1",
         "daylerees/sanitizer": "^1.0",
-        "canducci/zipcode": "1.*"
+        "canducci/zipcode": "1.*",
+        "phpbu/phpbu-laravel": "^2.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

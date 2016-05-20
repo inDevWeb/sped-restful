@@ -4,7 +4,8 @@ namespace SpedRest\Http\Controllers;
 
 use Illuminate\Http\Request;
 use SpedRest\Http\Requests;
-use SpedRest\Repositories\IssuerRepository;
+
+use SpedRest\Repositories\CertificateRepository;
 use SpedRest\Services\IssuerService;
 
 class CertificateController extends Controller
@@ -24,9 +25,10 @@ class CertificateController extends Controller
     /**
      * Construtora da classe
      * Instancia o repository
-     * @param IssuerRepository $repository
+     * @param CertificateRepository $repository
+     * @param IssuerService $service
      */
-    public function __construct(IssuerRepository $repository, IssuerService $service)
+    public function __construct(CertificateRepository $repository, IssuerService $service)
     {
         $this->repository = $repository;
         $this->service = $service;
@@ -40,29 +42,28 @@ class CertificateController extends Controller
      */
     public function store(Request $request, $id)
     {
-        $file = $request->file('pfx');
-        $extension = $file->getClientOriginalExtension();
+        $pfxfile = $request->file('pfx');
+        $chainfile = $request->file('chain');
+        $extension = $pfxfile->getClientOriginalExtension();
         $pass = $request->secret;
-        
         $data = [
-            'file' => $file,
+            'pfxfile' => $pfxfile,
             'extension' => $extension,
             'secret' => $pass,
-            'chain' => $request->chain
+            'chainfile' => $chainfile
         ];
-        
         $dados = $this->service->certificateStore($data, $id);
         return $dados;
     }
     
     /**
-     * Retorna os dados de um emitente
-     * Pode ser acessado pelo Admin ou pelo próprio emitente
+     * Retorna os dados de um certificado
+     * Pode ser acessado pelo Admin ou qq usuário vinculado ao emitente
      * @param int $id
      * @return Response
      */
     public function show($id)
     {
-        return '';
+        return $this->repository->findWhere(['issuer_id' => $id]);
     }
 }
