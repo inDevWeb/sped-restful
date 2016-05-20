@@ -4,7 +4,6 @@ namespace SpedRest\Http\Requests;
 
 use SpedRest\Http\Requests\Request;
 
-
 class IssuerCreateRequest extends Request
 {
     /**
@@ -39,9 +38,9 @@ class IssuerCreateRequest extends Request
             FILTER_SANITIZE_STRING
         );
         $input['description'] = filter_var(
-            $input['description'], 
+            $input['description'],
             FILTER_SANITIZE_STRING
         );
-        $this->replace($input); 
+        $this->replace($input);
     }
 }

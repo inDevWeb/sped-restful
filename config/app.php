@@ -179,6 +179,11 @@ return [
         Canducci\ZipCode\Providers\ZipCodeServiceProvider::class,
         Canducci\ZipCode\Providers\ZipCodeAddressServiceProvider::class,
         
+        /*
+         * Backup
+         */
+        phpbu\Laravel\ServiceProvider::class,
+        
     ],
 
     /*

@@ -7,7 +7,6 @@ use SpedRest\Http\Requests;
 use SpedRest\Repositories\IssuerRepository;
 use SpedRest\Services\IssuerService;
 
-
 class IssuerController extends Controller
 {
     /**

@@ -48,7 +48,7 @@ class IssuerService
         IssuerRepository $repository,
         IssuerValidator $validator,
         Filesystem $filesystem,
-        Storage $storage    
+        Storage $storage
     ) {
         $this->repository = $repository;
         $this->validator = $validator;
@@ -93,48 +93,53 @@ class IssuerService
             . DIRECTORY_SEPARATOR
             . $cnpj
             . DIRECTORY_SEPARATOR
-            . 'certs'    
+            . 'certs'
             . DIRECTORY_SEPARATOR;
-        
-        $content = $this->filesystem->get($data['file']);
+        if (empty($data['pfxfile'])) {
+            return [
+                'error' => 'certificado',
+                'errorDescription' => 'O certificado PFX é obrigatório'
+            ];
+        }
+        $content = $this->filesystem->get($data['pfxfile']);
+        $chain = '';
+        if (!empty($data['chainfile'])) {
+            $chain  = $this->filesystem->get($data['chainfile']);
+        }
         $password = $data['secret'];
-        $pkcs12 = new Pkcs12($pathCerts, $cnpj, '', '', '', true);
         try {
-            $pkcs12->loadPfx($content, $password, false, true, true);
-        } catch (\Exception $e) {
-            
-        }     
-        $prikey = $pkcs12->priKey;
-        $pubkey = $pkcs12->pubKey;
-        $certkey = $pkcs12->certKey;
-        $expiretimestamp = $pkcs12->getValidate($pubkey);
-        $validade = date('Y-m-d H:i:s', $expiretimestamp);
-        $cnpjcert = Asn::getCNPJCert($pubkey);
-        $chain = $data['chain'];
+            $pkcs12 = new Pkcs12($pathCerts, $cnpj, '', '', '', false);
+            $pkcs12->loadPfx($content, $password, false, false, false);
+        } catch (\RuntimeException $e) {
+            return [
+                'error' => 'certificado',
+                'errorDescription' => $e->getMessage()
+            ];
+        } catch (\InvalidArgumentException $e) {
+            return [
+                'error' => 'certificado',
+                'errorDescription' => $e->getMessage()
+            ];
+        }
+        if (!empty(trim($chain))) {
+            //verificar se é um certificado pem
+            //se for anexar ao certKey usando $pkcs12->addChain(array)
+            $pkcs12->addChain([$chain]);
+        }
         $dados = [
             'pfx' => base64_encode($content),
             'chain' => $chain,
             'secret' => $password,
-            'prikey' => $prikey,
-            'pubkey' => $pubkey,
-            'certkey' => $certkey,
-            'cnpj' => $cnpjcert,
-            'validity' => $validade
+            'prikey' => $pkcs12->priKey,
+            'pubkey' => $pkcs12->pubKey,
+            'certkey' => $pkcs12->certKey,
+            'cnpj' => $pkcs12->getCNPJCert(),
+            'validity' => date('Y-m-d H:i:s', $pkcs12->getValidate())
         ];
-        
-        $msg = array();
-        if ($cnpjcert !== $cnpj) {
-            $msg[] = ['error' => "O cnpj do certificado $cnpjcert não pertence a esse Emitente com o CNPJ $cnpj"];
-        }
-        $dHoje = gmmktime(0, 0, 0, date("m"), date("d"), date("Y"));
-        //if ($expiretimestamp < $dHoje) {
-        //    $msg[] = ['error' => "A validade do certificado expioru em " . date('d/m/Y', $expiretimestamp)];
-        //}
-        if (!empty($msg)) {
-            return $msg;
-        }
         $issuer->certificate()->where('issuer_id', $id)->delete();
         return $issuer->certificate()->create($dados);
         //Storage::put($cnpj.'.'.$data['extension'], File::get($data['file']));
     }
+    
+    
 }
