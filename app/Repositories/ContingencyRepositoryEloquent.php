@@ -5,16 +5,15 @@ namespace SpedRest\Repositories;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 
-use SpedRest\Entities\Issuer;
-use SpedRest\Repositories\IssuerRepository;
+use SpedRest\Entities\Contingency;
+use SpedRest\Repositories\ContingencyRepository;
 
-class IssuerRepositoryEloquent extends BaseRepository implements IssuerRepository
+class ContingencyRepositoryEloquent extends BaseRepository implements ContingencyRepository
 {
     public function model()
     {
-        return Issuer::class;
+        return Contingency::class;
     }
-    
     
     public function boot()
     {

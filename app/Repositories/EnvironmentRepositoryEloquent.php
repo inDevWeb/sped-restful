@@ -5,16 +5,15 @@ namespace SpedRest\Repositories;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 
-use SpedRest\Entities\Issuer;
-use SpedRest\Repositories\IssuerRepository;
+use SpedRest\Entities\Environment;
+use SpedRest\Repositories\EnvironmentRepository;
 
-class IssuerRepositoryEloquent extends BaseRepository implements IssuerRepository
+class EnvironmentRepositoryEloquent extends BaseRepository implements EnvironmentRepository
 {
     public function model()
     {
-        return Issuer::class;
+        return Environment::class;
     }
-    
     
     public function boot()
     {

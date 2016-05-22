@@ -38,6 +38,22 @@ class SpedRestRepositoryProvider extends ServiceProvider
             \SpedRest\Repositories\CertificateRepository::class,
             \SpedRest\Repositories\CertificateRepositoryEloquent::class
         );
+        
+        $this->app->bind(
+            \SpedRest\Repositories\EnvironmentRepository::class,
+            \SpedRest\Repositories\EnvironmentRepositoryEloquent::class
+        );
+        
+        $this->app->bind(
+            \SpedRest\Repositories\ProtocolRepository::class,
+            \SpedRest\Repositories\ProtocolRepositoryEloquent::class
+        );
+        
+        $this->app->bind(
+            \SpedRest\Repositories\ContingencyRepository::class,
+            \SpedRest\Repositories\ContingencyRepositoryEloquent::class
+        );
+        
       
     }
 }

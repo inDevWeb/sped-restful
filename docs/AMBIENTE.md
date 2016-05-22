@@ -6,16 +6,20 @@ Neste bloco estão contidos os métodos necessários para a gestão das condiç�
 ## Ambiente
 Retorna qual o ambiente que está ativo no sistema
 
-**GET:** http://dominio/restnfe/emitente/$id/ambiente
+**GET:** http://dominio/issuer/$id/environment
 Retorno de status HTTP: 200
 
 Retorno:
 ```json
-    {
-      "bStat": true,
-      "tpAmb": "2",
-      "descricao": "homologação"
-    }
+[
+  {
+    "issuer_id": 1,
+    "tpAmb": 1,
+    "description": "producao",
+    "created_at": "2016-05-22 15:20:48",
+    "updated_at": "2016-05-22 15:20:48"
+  }
+]
 ```
 
 ##Editar Ambiente
@@ -24,90 +28,28 @@ Especifica em qual ambiente o aplicativo deve operar.
 >**ATENÇÃO:**
 >Cuidado ao editar ou modificar o ambiente, pois os dados enviados ao embiente de produção e aceitos terão validade fiscal.
 
-**POST:** http://dominio/restnfe/emitente/$id/ambiente
+**POST:** http://dominio/issuer/$id/environment
 tpAmb = tipo de ambiente 1-produção ou 2-homologação
 >Se nenhum dado for passado o comando será ignorado.
 
 Parametros:
-```json
-  {
-    "tpAmb" : "2"
-  }
-```
+tpAmb string 
 
 Retorno de status HTTP: 200
 
 Retorno:
 ```json
-    {
-      "bStat": true,
-      "tpAmb": "2",
-      "descricao": "homologação"
-    }
+{
+  "tpAmb": "2",
+  "description": "homologacao",
+  "issuer_id": 1,
+  "updated_at": "2016-05-22 17:28:11",
+  "created_at": "2016-05-22 17:28:11",
+  "id": 0
+}
 ```
 
-## Contingência
-Checa se está ativada a contingência
 
-**GET:** http://dominio/restnfe/emitente/$id/contingencia
-
-Retorno de status HTTP: 200
-
-Retorno:
-```json
-    {
-      "bStat": true,
-      "tipo": "",
-      "motivo": "",
-      "hora": ""
-    }
-```
->Caso retornem dados vazios então a emissão é **"normal"** e não contingência, de outra forma serão retornados os dados da contingência.
-
-
-## Ativar Contingencia
-
-Ativa o modo de contingência SVC-AN ou SVC-RS, dependendo do estado do emissor.
-
-**POST:** http://dominio/restnfe/emitente/$id/contingencia
-
->O parametro motivo é obrigatório
-
-Parametros:
-```json
-  {
-    "motivo" : "motivo declarado para a entrada em contigencia"
-  }
-```
-
-Retorno de status HTTP: 200
-
-Retorno:
-```json
-    {
-      "bStat": true,
-      "tipo": "SVCAN",
-      "motivo": "motivo declarado para a entrada em contigencia",
-      "hora": "2016-04-21T13:33:14-03:00"
-    }
-```
-
-## Desativar Contingência
-Desativa o modo de contingência SVC-AN ou SVC-RS. Para desativar o modo de contingência mantenha o campo motivo em "branco" (vazio)
-
-**DELETE:** http://dominio/restnfe/emitente/$id/contingencia
-
-Retorno de status HTTP: 200
-
-Retorno:
-```json
-    {
-      "bStat": true,
-      "tipo": "",
-      "motivo": "",
-      "hora": ""
-    }
-```
 
 ## Modelo de NFe
 Retorna o modelo base setado no sistema.
@@ -143,44 +85,6 @@ Retorno:
     {
       "bStat": true,
       "modelo": "55"
-    }
-```
-
-## Protocolo SSL
-Este método retorna o protocolo setado para uso na comunicação SOAP
-
-**GET:** http://dominio/restnfe/emitente/$id/protocolssl
-
-Retorno de status HTTP: 200
-
-Retorno:
-```json
-    {
-      "bStat": true,
-      "ssl": "SSLv3"
-    }
-```
-
-## Editar Protocolo SSL
-Este método força o uso de um determinado protocolo de criptografia "https"
->Algumas vezes ocorre do servidor estar "mal configurado" ou por problemas durante o "handshake" entre o cliente cURL e o servidor. E devido a isso o PHP não consegue identificar qual é o protocolo a ser usado naquele caso e de forma automática.
->Então é necessário **FORÇAR** um determinado protocolo para que a operação seja realizada.
-
-**POST:** http://dominio/restnfe/emitente/$id/protocolssl
-Parametros:
-```json
-  {
-    "ssl" : "TLSv1"
-  }
-```
-
-Retorno de status HTTP: 200
-
-Retorno:
-```json
-    {
-      "bStat": true,
-      "ssl": "TLSv1"
     }
 ```
 

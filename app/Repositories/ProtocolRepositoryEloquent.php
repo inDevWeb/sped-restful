@@ -5,16 +5,15 @@ namespace SpedRest\Repositories;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 
-use SpedRest\Entities\Issuer;
-use SpedRest\Repositories\IssuerRepository;
+use SpedRest\Entities\Protocol;
+use SpedRest\Repositories\ProtocolRepository;
 
-class IssuerRepositoryEloquent extends BaseRepository implements IssuerRepository
+class ProtocolRepositoryEloquent extends BaseRepository implements ProtocolRepository
 {
     public function model()
     {
-        return Issuer::class;
+        return Protocol::class;
     }
-    
     
     public function boot()
     {
