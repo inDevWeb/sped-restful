@@ -2,7 +2,7 @@
 
 namespace SpedRest\Http\Controllers;
 
-use Illuminate\Http\Request;
+//use Illuminate\Http\Request;
 
 use SpedRest\Http\Request;
 use SpedRest\Repositories\IssuerRepository;
@@ -29,12 +29,12 @@ class IssuerController extends Controller
      * Instancia o repository
      * @param IssuerRepository $repository
      */
-    public function __construct(IssuerRepository $repository, IssuerService $service)
-    {
+    public function __construct(
+        IssuerRepository $repository,
+        IssuerService $service
+    ) {
         $this->repository = $repository;
         $this->service = $service;
-        //$this->userId = Authorizer::getResourceOwnerId();
-        
     }
 
     /**
@@ -65,6 +65,9 @@ class IssuerController extends Controller
      */
     public function show($id)
     {
+        if ($this->checkAutorizations($id) == false) {
+            return ['error' => 'Permissões', 'errorDescription' => 'Voce não tem permissão para acessar esses dados.'];
+        }
         return $this->repository->find($id);
     }
     
@@ -89,5 +92,13 @@ class IssuerController extends Controller
     public function destroy($id)
     {
         return $this->repository->find($id)->delete();
+    }
+    
+    public function checkAutorizations($id)
+    {
+        $userId = 1;
+        //user ID fornecido pelo OAuth2
+        //$userId = Authorizer::getResourceOwnerId();
+        return $this->repository->isMember($id, $userId);
     }
 }

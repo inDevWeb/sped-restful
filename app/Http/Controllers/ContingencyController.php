@@ -2,7 +2,8 @@
 
 namespace SpedRest\Http\Controllers;
 
-use Illuminate\Http\Request;
+//use Illuminate\Http\Request;
+
 use SpedRest\Http\Requests;
 use SpedRest\Entities\Contingency;
 use SpedRest\Repositories\ContingencyRepository;
