@@ -1,4 +1,5 @@
 <?php
+
 namespace SpedRest\Repositories;
 
 use Prettus\Repository\Contracts\RepositoryInterface;

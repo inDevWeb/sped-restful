@@ -2,13 +2,18 @@
 
 namespace SpedRest\Services;
 
-use SpedRest\Repositories\IssuerRepository;
-use SpedRest\Validators\IssuerValidator;
-use SpedRest\Entities\Certificate;
-use Prettus\Validator\Exceptions\ValidatorException;
-
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Contracts\Filesystem\Factory as Storage;
+
+use Prettus\Validator\Exceptions\ValidatorException;
+
+use SpedRest\Repositories\IssuerRepository;
+use SpedRest\Validators\IssuerValidator;
+
+use SpedRest\Entities\Certificate;
+//use SpedRest\Entities\Protocol;
+//use SpedRest\Entities\Environment;
+//use SpedRest\Entities\Contingency;
 
 use NFePHP\Common\Certificate\Pkcs12;
 use NFePHP\Common\Certificate\Asn;
@@ -139,25 +144,30 @@ class IssuerService
         $issuer->certificate()->where('issuer_id', $id)->delete();
         return $issuer->certificate()->create($dados);
     }
-    
+  /*  
     public function environmentStore(array $data, $id)
     {
-        $issuer = $this->repository->find($id);
-        $issuer->environment()->where('issuer_id', $id)->delete();
-        return $issuer->environment()->create($data);
+        dd($data);
+        //$issuer = $this->repository->find($id);
+        //$issuer->environment()->where('issuer_id', $id)->delete();
+        //return $issuer->environment()->create($data);
     }
     
     public function contingencyStore(array $data, $id)
     {
-        $issuer = $this->repository->find($id);
-        $issuer->contingency()->where('issuer_id', $id)->delete();
-        return $issuer->contingency()->create($data);
+        dd($data);
+        //$issuer = $this->repository->find($id);
+        //$issuer->contingency()->where('issuer_id', $id)->delete();
+        //return $issuer->contingency()->create($data);
     }
     
     public function protocolStore(array $data, $id)
     {
-        $issuer = $this->repository->find($id);
-        $issuer->protocol()->where('issuer_id', $id)->delete();
-        return $issuer->protocol()->create($data);
+        dd($data);
+        //$issuer = $this->repository->find($id);
+        //$issuer->protocol()->where('issuer_id', $id)->delete();
+        //return $issuer->protocol()->create($data);
     }
+   * 
+   */
 }

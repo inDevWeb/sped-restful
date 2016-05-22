@@ -12,7 +12,7 @@ class CertificateController extends Controller
 {
     /**
      * Repository de acesso ao banco de dados
-     * @var IssuerRepository
+     * @var CertificateRepository
      */
     protected $repository;
 

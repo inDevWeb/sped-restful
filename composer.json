@@ -59,7 +59,7 @@
         ],
         "post-update-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
-            "php artisan optimize && vendor/bin/phpcbf --standard=psr2 app/"
+            "php artisan optimize"
         ]
     },
     "config": {
