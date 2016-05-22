@@ -26,18 +26,22 @@ Route::delete('issuer/{id}', 'IssuerController@destroy');
 Route::get('issuer/{id}/certificate', 'CertificateController@show');
 Route::post('issuer/{id}/certificate', 'CertificateController@store');
 
+
 //Rotas de ambiente
 Route::get('issuer/{id}/environment', 'EnvironmentController@show');
 Route::post('issuer/{id}/environment', 'EnvironmentController@store');
 
-//Rotas de Contingência
-Route::get('issuer/{id}/contingency', 'ContingencyController@show');
-Route::post('issuer/{id}/contingency', 'ContingencyController@store');
-
 //Rotas de protoclo SSL
 Route::get('issuer/{id}/protocol', 'ProtocolController@show');
 Route::post('issuer/{id}/protocol', 'ProtocolController@store');
+
+//Rotas de Contingência
+Route::get('issuer/{id}/contingency', 'ContingencyController@show');
+Route::post('issuer/{id}/contingency', 'ContingencyController@store');
+Route::delete('issuer/{id}/contingency', 'ContingencyController@destroy');
+
 /*
+
 //Rotas referentes a NFe
 Route::post('issuer/{id}/nfe', 'NFeController@index');
 

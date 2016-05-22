@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call(IssuersTableSeeder::class);
         $this->call(OAuthClientsTableSeeder::class);
         $this->call(IssuersMembersTableSeeder::class);
-        
+        //$this->call(EnvironmentTableSeeder::class);
         Model::reguard();
     }
 }

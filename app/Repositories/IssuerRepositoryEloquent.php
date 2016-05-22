@@ -20,10 +20,4 @@ class IssuerRepositoryEloquent extends BaseRepository implements IssuerRepositor
     {
         $this->pushCriteria(app(RequestCriteria::class));
     }
-    
-    public function isOwner($issuerId, $userId)
-    {
-        //if ($this->findWhere(['cnpj']))
-        
-    }
 }

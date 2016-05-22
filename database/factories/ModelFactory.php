@@ -56,3 +56,17 @@ $factory->define(SpedRest\Entities\IssuerMember::class, function (Faker\Generato
         'member_id' => $faker->numberBetween(1, 6000)
     ];
 });
+/*
+$factory->define(SpedRest\Entities\Environment::class, function (Faker\Generator $faker) {
+    $tpAmb = $faker->numberBetween(1, 2);
+    $description = 'homolgacao';
+    if ($tpAmb == 1) {
+        $description = 'producao';
+    }
+    return [
+        'issuer_id' => $faker->numberBetween(1, 6000),
+        'tpAmb' => $tpAmb,
+        'description' => $description
+    ];
+});
+*/
