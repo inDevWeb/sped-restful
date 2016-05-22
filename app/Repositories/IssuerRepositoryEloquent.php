@@ -15,9 +15,22 @@ class IssuerRepositoryEloquent extends BaseRepository implements IssuerRepositor
         return Issuer::class;
     }
     
-    
     public function boot()
     {
         $this->pushCriteria(app(RequestCriteria::class));
+    }
+    
+    public function isMember($issuerId, $userId)
+    {
+        if ($userId == 1) {
+            return true;
+        }
+        $issuer = $this->find($issuerId);
+        foreach ($issuer->members as $member) {
+            if ($member->id == $userId) {
+                return true;
+            }
+        }
+        return false;
     }
 }

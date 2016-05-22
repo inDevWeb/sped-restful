@@ -8,37 +8,33 @@ Route::post('oauth/access_token', function () {
     return Response::json(Authorizer::issueAccessToken());
 });
 
+//Grupo para colocar as rotas que dependem da autenticação
+//será usada mais tarde depois que as rotas estiverem todas ajustadas
+//e funcionais conforme estabelecido na documentação, apenas para facilitar
+Route::group(['middleware' => 'oauth'], function () {
+    
+});
+
 //Rotas de usuário
-Route::get('user', 'UserController@index');
-Route::post('user', 'UserController@store');
-Route::get('user/{id}', 'UserController@show');
-Route::put('user/{id}', 'UserController@update');
-Route::delete('user/{id}', 'UserController@destroy');
+Route::resource('user', 'UserController', ['except' => ['create','edit']]);
 
 //Rotas para Emitentes
-Route::get('issuer', 'IssuerController@index');
-Route::post('issuer', 'IssuerController@store');
-Route::get('issuer/{id}', 'IssuerController@show');
-Route::put('issuer/{id}', 'IssuerController@update');
-Route::delete('issuer/{id}', 'IssuerController@destroy');
-
-//Rotas de Certificado
-Route::get('issuer/{id}/certificate', 'CertificateController@show');
-Route::post('issuer/{id}/certificate', 'CertificateController@store');
-
-
-//Rotas de ambiente
-Route::get('issuer/{id}/environment', 'EnvironmentController@show');
-Route::post('issuer/{id}/environment', 'EnvironmentController@store');
-
-//Rotas de protoclo SSL
-Route::get('issuer/{id}/protocol', 'ProtocolController@show');
-Route::post('issuer/{id}/protocol', 'ProtocolController@store');
-
-//Rotas de Contingência
-Route::get('issuer/{id}/contingency', 'ContingencyController@show');
-Route::post('issuer/{id}/contingency', 'ContingencyController@store');
-Route::delete('issuer/{id}/contingency', 'ContingencyController@destroy');
+Route::resource('issuer', 'IssuerController', ['except' => ['create','edit']]);
+Route::group(['prefix' => 'issuer'], function () {
+    //Rotas de Certificado
+    Route::get('{id}/certificate', 'CertificateController@show');
+    Route::post('{id}/certificate', 'CertificateController@store');
+    //Rotas de ambiente
+    Route::get('{id}/environment', 'EnvironmentController@show');
+    Route::post('{id}/environment', 'EnvironmentController@store');
+    //Rotas de protoclo SSL
+    Route::get('{id}/protocol', 'ProtocolController@show');
+    Route::post('{id}/protocol', 'ProtocolController@store');
+    //Rotas de Contingência
+    Route::get('{id}/contingency', 'ContingencyController@show');
+    Route::post('{id}/contingency', 'ContingencyController@store');
+    Route::delete('{id}/contingency', 'ContingencyController@destroy');
+});
 
 /*
 
