@@ -1,3 +1,5 @@
+# ESTE PROJETO ESTÁ SUSPENSO, ATÉ HAVER MAIS COLABORADORES E TEMPO DISPONÍVEL !!!
+# NÃO FUNCIONAL !!! 
 # Sped-RestFul
 
 >NOTA:este projeto está apenas na fase de dellineamento sem nenhuma estrutura construida ainda.
